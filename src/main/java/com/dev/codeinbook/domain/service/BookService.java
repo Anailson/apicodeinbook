@@ -7,11 +7,24 @@ public class BookService {
 
     private BookRepositoryPort bookRepositoryPort;
 
-    private BookService(BookRepositoryPort bookRepositoryPort){
+    private BookService(BookRepositoryPort bookRepositoryPort) {
         this.bookRepositoryPort = bookRepositoryPort;
     }
 
-    public BookDTO create(BookDTO dto){
-            return bookRepositoryPort.create(dto);
+    public BookDTO create(BookDTO dto) {
+        return bookRepositoryPort.create(dto);
+    }
+
+    public void update(String id, BookDTO dto) {
+        bookRepositoryPort.udpate(id, dto);
+    }
+
+
+    public BookDTO findById(String id) {
+        return bookRepositoryPort.findById(id);
+    }
+
+    public void delete(String id) {
+        bookRepositoryPort.delete(id);
     }
 }
