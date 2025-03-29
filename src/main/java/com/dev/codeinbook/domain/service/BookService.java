@@ -1,6 +1,7 @@
 package com.dev.codeinbook.domain.service;
 
 import com.dev.codeinbook.common.dto.BookDTO;
+import com.dev.codeinbook.common.dto.PageDTO;
 import com.dev.codeinbook.domain.port.out.BookRepositoryPort;
 
 public class BookService {
@@ -26,5 +27,9 @@ public class BookService {
 
     public void delete(String id) {
         bookRepositoryPort.delete(id);
+    }
+
+    public PageDTO<BookDTO> findAll(int page, int size) {
+        return bookRepositoryPort.findAll(page, size);
     }
 }

@@ -2,6 +2,7 @@ package com.dev.codeinbook.domain;
 
 
 import com.dev.codeinbook.common.dto.BookDTO;
+import com.dev.codeinbook.common.dto.PageDTO;
 import com.dev.codeinbook.domain.port.out.BookRepositoryPort;
 import com.dev.codeinbook.domain.service.BookService;
 import org.junit.jupiter.api.Test;
@@ -11,6 +12,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
@@ -65,10 +67,23 @@ public class BookServiceTest {
         bookService.delete("123");
         verify(bookRepositoryPort, times(1)).delete("123");
     }
+    @Test
+    void shouldGetBooksPaged() {
+        List<BookDTO> bookList = List.of(getBookSaved());
+
+        PageDTO<BookDTO> page = PageDTO.<BookDTO>builder()
+                .content(bookList)
+                .page(0)
+                .size(10)
+                .totalElements(1000)
+                .totalPages(100)
+                .build();
+
+        when(bookRepositoryPort.findAll(0, 10)).thenReturn(page);
+        assertEquals(page, bookService.findAll(0, 10));
+    }
 
     private static BookDTO getBookSaved() {
         return new BookDTO("123", "Partindo do com java", "Apreda Java", "", BigDecimal.valueOf(29.90));
     }
-
-
 }
