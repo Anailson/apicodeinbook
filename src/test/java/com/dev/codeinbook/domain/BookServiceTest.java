@@ -64,8 +64,8 @@ public class BookServiceTest {
      */
     @Test
     void shoulDeleteBook() {
-        bookService.delete("123");
-        verify(bookRepositoryPort, times(1)).delete("123");
+        bookService.deleteById("123");
+        verify(bookRepositoryPort, times(1)).deleteById("123");
     }
     @Test
     void shouldGetBooksPaged() {
