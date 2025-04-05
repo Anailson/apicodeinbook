@@ -2,13 +2,14 @@ package com.dev.codeinbook.domain.service;
 
 import com.dev.codeinbook.common.dto.BookDTO;
 import com.dev.codeinbook.common.dto.PageDTO;
+import com.dev.codeinbook.domain.port.in.BookServicePort;
 import com.dev.codeinbook.domain.port.out.BookRepositoryPort;
 
-public class BookService {
+public class BookService implements BookServicePort {
 
     private BookRepositoryPort bookRepositoryPort;
 
-    private BookService(BookRepositoryPort bookRepositoryPort) {
+    public BookService(BookRepositoryPort bookRepositoryPort) {
         this.bookRepositoryPort = bookRepositoryPort;
     }
 

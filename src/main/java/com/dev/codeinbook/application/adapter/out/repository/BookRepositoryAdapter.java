@@ -1,4 +1,4 @@
-package com.dev.codeinbook.application.adapter.out;
+package com.dev.codeinbook.application.adapter.out.repository;
 
 import com.dev.codeinbook.common.dto.BookDTO;
 import com.dev.codeinbook.common.dto.PageDTO;
